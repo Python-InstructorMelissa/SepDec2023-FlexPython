@@ -4,12 +4,12 @@
 
 school = [
     {
-        id: 1,
+        'id': 1,
         "class": "Web Fundamentals",
         "instructor": "Stephanie",
         "students": [
             {
-                id: 1,
+                'id': 1,
                 "firstName": "Jane",
                 "lastName": "Doe",
                 "grades": [
@@ -28,7 +28,7 @@ school = [
                 ]
             },
             {
-                id: 2,
+                'id': 2,
                 "firstName": "Bob",
                 "lastName": "Ross",
                 "grades": [
@@ -47,7 +47,7 @@ school = [
                 ]
             },
             {
-                id: 3,
+                'id': 3,
                 "firstName": "John",
                 "lastName": "Smith",
                 "grades": [
@@ -98,12 +98,12 @@ school = [
         ]
     },
     {
-        id: 2,
+        'id': 2,
         "class": "Python",
         "instructor": "Melissa",
         "students": [
             {
-                id: 4,
+                'id': 4,
                 "firstName": "Barbara",
                 "lastName": "Doe",
                 "grades": [
@@ -122,7 +122,7 @@ school = [
                 ]
             },
             {
-                id: 5,
+                'id': 5,
                 "firstName": "James",
                 "lastName": "Ross",
                 "grades": [
