@@ -1,0 +1,7 @@
+welcome = "Welcome guest, would you be so kind to give us your name?\n"
+noGame = "Sorry you don't want to play a game today.  Please do come back another day"
+noRef = "Sorry but that means you are too young to play these games\n\nExiting now"
+yesRef = "You are deamed old enough to proceed\n\n"
+yesGame = "I am so glad you have decided to play a game with me"
+enterNumGame = "Please stand by as we take you to the Number Guessing Game\n"
+badInput = "Sorry but that is not an option.  Exiting Game"
