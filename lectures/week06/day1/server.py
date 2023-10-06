@@ -8,14 +8,14 @@ app = Flask(__name__)    # Create a new instance of the Flask class called "app"
 def hello_world():
     return 'Hello Class Whats happening!'  # Return the string 'Hello World!' as a response
 
-@app.route('/new')
-def newRoute():
-    return "New route"
+# @app.route('/new')
+# def newRoute():
+#     return "New route"
 
-# Here the second parameter is cast into an integer before being passed to the function
-@app.route('/hello/<name>/<int:num>') 
-def hello(name, num):
-    return f"Hello, {name * num}"
+# # Here the second parameter is cast into an integer before being passed to the function
+# @app.route('/hello/<name>/<int:num>') 
+# def hello(name, num):
+#     return f"Hello, {name * num}"
 
 
 
