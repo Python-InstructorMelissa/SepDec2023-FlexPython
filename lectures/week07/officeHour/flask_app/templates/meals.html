@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, td, th {
+            border: 1px solid black;
+            padding: 1em;
+            margin: 5em;
+        }
+    </style>
+</head>
+<body>
+    {% block name %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <table>
+            <tr>
+                <th>Day of the Week</th>
+                <th>Lunch</th>
+                <th>Meal</th>
+            </tr>
+            {% for i in meals %}
+                <tr>
+                    <td>{{i.dayOfWeek}}</td>
+                    <!-- m in i.meal is from the 1st for loop of i in meals the list is called meal -->
+                    {% for m in i.meal %}
+                    <!-- m.mealTime is part of the dict in the i.meal list -->
+                        {% if m.mealTime == "Lunch" %}
+                            <td>Yes</td>
+                            <td>{{m.theMeal}}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <table>
+            <tr>
+                <th>Day of the Week</th>
+                <th>Dinner</th>
+                <th>Meal</th>
+            </tr>
+            {% for i in meals %}
+                <tr>
+                    <td>{{i.dayOfWeek}}</td>
+                    <!-- m in i.meal is from the 1st for loop of i in meals the list is called meal -->
+                    {% for m in i.meal %}
+                    <!-- m.mealTime is part of the dict in the i.meal list -->
+                        {% if m.mealTime == "Dinner" %}
+                            <td>Yes</td>
+                            <td>{{m.theMeal}}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

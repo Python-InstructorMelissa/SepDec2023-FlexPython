@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .student {
+            border: blue groove 5px;
+        }
+        table, tr, td, th {
+            border: black 1px solid;
+            padding: .5em;
+            margin: .5em;
+        }
+    </style>
+</head>
+<body>
+    {% block name %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <!-- for each entry in the list of grades -->
+        {% for student in grades %}
+            <div class="student">
+                <!-- display the entry's name -->
+                <h2>{{student.name}}</h2>
+                <table>
+                    <!-- for each entry in the list of grades in the single entry from the main list of grades -->
+                    {% for g in student.grades %}
+                        <tr>
+                            <th>Grade</th>
+                            <!-- display the entry's grade -->
+                            <td>{{g.grade}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

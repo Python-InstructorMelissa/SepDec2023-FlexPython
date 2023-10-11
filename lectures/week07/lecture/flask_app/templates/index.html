@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>{{data.title}} {{data.date}}</h1>
+        <h2>I am index</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <img src="{{ url_for('static', filename='rotaingWebFunIcons.gif') }}" alt="Web Fun Icon">
+        <form action="/createName" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+            <button>Add Name</button>
+        </form>
+    </main>
+    <footer>
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
