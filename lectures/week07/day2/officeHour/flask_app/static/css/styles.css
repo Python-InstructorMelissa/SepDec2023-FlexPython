@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Zz8oY2KRmwvKhhvLFGKpA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2hsY.ttf) format('truetype');
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: #ff0000;
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.5em;
+  color: #fff;
+  padding: 1em;
+  background-color: #fbff0070;
+  text-align: center;
+  max-width: 300px;
+}
+li {
+  font-size: 1.4em;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2em;
+}
+table,
+th,
+td {
+  border: 1px double #fbff0070;
+  padding: 1em;
+}
+input,
+textarea {
+  background-color: #fbff0070;
+  color: #fff;
+  font-size: 0.8em;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #f110b9;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-family: 'VT323', monospace;
+}
+body header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+body header h1 {
+  color: #fbff00;
+}
+body header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+body header nav a {
+  padding: 1em;
+  margin: 1em;
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  width: 75%;
+}
+body main h1 {
+  color: #0df50d;
+}
+body main .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 75%;
+  align-items: flex-start;
+}
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+body main .collapsible {
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 1.4em;
+  background-color: #fbff0070;
+  margin: 1em;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-family: 'VT323', monospace;
+}
+body main .active,
+body main .collapsible:hover {
+  color: #0df50d;
+  font-size: 1.8em;
+}
+body main .content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  width: 95%;
+}
+body main .content table {
+  width: 100%;
+}
+body main form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  width: 40%;
+  font-size: 1.4em;
+}
+body main form section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+body main form section input,
+body main form section textarea {
+  background-color: #fbff0070;
+  color: #fff;
+  font-size: 0.8em;
+}
+body footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h2>This class for python will run from September - December</h2>
+        <h3>There are some pretty cool cats in this class</h3>
+        <h4>That Instructor lady though.... we question her</h4>
+        <h1 id="count">0</h1>
+        <input type="button" value="Increase the Counter" onclick="counter('count')"/>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

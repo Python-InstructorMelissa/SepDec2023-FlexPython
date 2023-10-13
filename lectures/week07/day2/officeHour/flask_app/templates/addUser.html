@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <form action="/createUser" method="post">
+            <label for="user">User</label>
+            <input type="text" name="user" id="">
+            <button>Add User</button>
+        </form>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

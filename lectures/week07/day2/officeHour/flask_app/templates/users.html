@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h1>Welcome to the session {{session['user']}}</h1>
+        <div class="box">
+            {% for u in users %}
+                <h3>{{u}}</h3> <button><a href="/removeName/{{u}}">Remove From Session Party</a></button><button><a href="/editUser/{{u}}">Edit User</a></button>
+            {% endfor %}
+        </div>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>
