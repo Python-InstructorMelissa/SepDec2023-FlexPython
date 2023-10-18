@@ -13,7 +13,7 @@
             - script.js
         - images/
             - logo.jpg
-    - controllers
+    - controllers/
         - controllerFile.py
 
 ## Create Environment

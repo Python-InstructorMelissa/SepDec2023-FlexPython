@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Testing 123</h1>
+    </header>
+    <main>
+        {% for d in data %}
+            <h3>{{d.name}} - {{d.location}}</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Appendages</th>
+                    <th>Will to Live</th>
+                    <th>Is Dead</th>
+                    <th>Health</th>
+                </tr>
+                {% for a in d.animals %}
+                    <tr>
+                        <td>{{a.name}}</td>
+                        <td>{{a.species}}</td>
+                        <td>{{a.appendages}}</td>
+                        <td>
+                            {% if a.willToLive == True %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if a.isDead == True %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>{{a.health}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </main>
+</body>
+</html>

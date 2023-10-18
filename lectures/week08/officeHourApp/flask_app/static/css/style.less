@@ -1,0 +1,43 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+table, tr, td, th {
+    border: solid black 1px;
+    padding: .5em;
+    margin: .5em;
+}
+a {
+    text-decoration: none;
+}
+@purple: #d88ed8;
+
+body {
+    .flexcolumn();
+
+    header {
+        .flexcolumn();
+        background-color: @purple;
+        width: 85%;
+
+        nav {
+            .flexrow();
+        }
+    }
+    main {
+        .flexcolumn();
+        width: 85%;
+    }
+    footer {
+        .flexcolumn();
+        width: 85%;
+    }
+}
