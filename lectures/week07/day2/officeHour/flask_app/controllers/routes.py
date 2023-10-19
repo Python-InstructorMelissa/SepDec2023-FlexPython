@@ -26,8 +26,14 @@ def users():
     
 @app.route('/logout/')
 def logout():
+    del userList[:]
+    # for u in userList:
+    #     userList.remove(u)
     session.clear()
-    userList = []
+    # for u in userList:
+    #     userList.remove(u)
+    print(userList)
+    # userList = []
     return redirect('/')
 
 @app.route('/removeName/<user>')
