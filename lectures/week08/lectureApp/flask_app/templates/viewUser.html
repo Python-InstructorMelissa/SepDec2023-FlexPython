@@ -14,9 +14,9 @@
         </nav>
     </header>
     <main>
-        {% for user in users %}
-            <h2>{{user.firstName}} {{user.lastName}} => {{user.username}} <button><a href="/user/{{user.id}}/view/">View User</a></button></h2>
-        {% endfor %}
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        <h3>Username: {{user.username}}</h3>
+        <p>{{user.createdAt}}</p>
     </main>
     <footer>
 

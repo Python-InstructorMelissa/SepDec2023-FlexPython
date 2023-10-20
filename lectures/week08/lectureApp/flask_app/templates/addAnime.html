@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <form action="/createAnime/" method="post">
+            <section>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="">
+            </section>
+            <section>
+                <label for="tvShow">TV Show</label>
+                <input type="text" name="tvShow" id="">
+            </section>
+            <section>
+                <label for="alignment">Alignment</label>
+                <input type="text" name="alignment" id="">
+            </section>
+            <section>
+                <label for="power">Power</label>
+                <input type="text" name="power" id="">
+            </section>
+            <section>
+                <label for="user_id">Added By</label>
+                <select name="user_id" id="">
+                    {% for user in users %}
+                        <option value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <button>Create New Anime</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

@@ -14,9 +14,21 @@
         </nav>
     </header>
     <main>
-        {% for user in users %}
-            <h2>{{user.firstName}} {{user.lastName}} => {{user.username}} <button><a href="/user/{{user.id}}/view/">View User</a></button></h2>
-        {% endfor %}
+        <form action="/createUser/" method="post">
+            <section>
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="">
+            </section>
+            <section>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="">
+            </section>
+            <section>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="">
+            </section>
+            <button>Create New User</button>
+        </form>
     </main>
     <footer>
 

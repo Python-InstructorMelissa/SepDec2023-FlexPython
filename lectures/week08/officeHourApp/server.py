@@ -1,5 +1,6 @@
 from flask_app import app
 from flask_app.controllers import routes
+from flask_app.controllers import parkController
 
 
 if __name__ == "__main__":

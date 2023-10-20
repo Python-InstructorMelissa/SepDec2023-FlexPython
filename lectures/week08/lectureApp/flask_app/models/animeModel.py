@@ -1,29 +1,31 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
-class User:
+class Anime:
     db = 'anime'
     def __init__(self, data):
         self.id = data['id']
-        self.firstName = data['firstName']
-        self.lastName = data['lastName']
-        self.username = data['username']
+        self.name = data['name']
+        self.tvShow = data['tvShow']
+        self.alignment = data['alignment']
+        self.power = data['power']
         self.createdAt = data['createdAt']
         self.updatedAt = data['updatedAt']
+        self.user_id = data['user_id']
 
     @classmethod
     def getAll(cls):
-        query = 'SELECT * FROM user;'
+        query = 'SELECT * FROM anime;'
         # let results = connect to the database send above query and return with results
         results = connectToMySQL(cls.db).query_db(query)
-        users = []
+        animes = []
         for row in results:
-            users.append(cls(row))
-        return users
+            animes.append(cls(row))
+        return animes
 
     @classmethod
     def getOne(cls, data):
         # %()s = wild card or basically the information we are passing in
-        query = "SELECT * FROM user WHERE id = %(id)s;"
+        query = "SELECT * FROM anime WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
         if len(results) < 1:
             return False
@@ -31,7 +33,7 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO user (firstName, lastName, username) VALUES (%(firstName)s, %(lastName)s, %(username)s);"
+        query = "INSERT INTO anime (name, tvShow, alignment, power, user_id) VALUES (%(name)s, %(tvShow)s, %(alignment)s, %(power)s, %(user_id)s);"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
