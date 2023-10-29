@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h1>{{count}}</h1>
+        <button><a href="/increase/">Increase Count</a></button>
+        <button><a href="/increase/2/">Increase Count By 2</a></button>
+        <button><a href="/clearSession/">Clear Session</a></button>
+
+
+
+
+
+        <h1>Image in Session</h1>
+        <!-- IF python is telling the html image is False the show this text -->
+        {% if image == False %}
+            <h2>No Image in session</h2>
+            <!-- Otherwise show the image that should be in session -->
+        {% else %}
+            <img src="{{image}}" alt="The Session Image" style="max-width: 150px;">
+        {% endif %}
+        <h1>Letters in session</h1>
+        {% if letter == False %}
+            <h2>Sorry Charlie no letter today</h2>
+        {% else %}
+            <h2>{{letter}}</h2>
+        {% endif %}
+
+        <button><a href="/clearSession/">Clear Session</a></button>
+        <h2>Add Image to Session</h2>
+        <form action="/createImage/" method="post">
+            <section>
+                <label for="image">Image Link</label>
+                <input type="text" name="image" id="">
+            </section>
+            <section>
+                <label for="letter">Letter</label>
+                <input type="text" name="letter" id="">
+            </section>
+            <button>Add Image To Session</button>
+        </form>
+        <h1>Session History</h1>
+        {% for x in history %}
+            <div class="column">
+                <h2>{{x.time}}</h2>
+                <img src="{{x.image}}" alt="The Session Image" style="max-width: 150px;">
+                <h2>{{x.letter}}</h2>
+            </div>
+        {% endfor %}
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

@@ -3,9 +3,13 @@
 <body>
     {% block menu %}
     <a href="/">Home</a>
-    <a href="/addUser/">Add New User</a>
     <a href="/allAnime/">Anime</a>
-    <a href="/addAnime/">Add New Anime</a>
+        {% if user == False %}
+            <a href="/addUser/">Add New User</a>
+        {% else %}
+            <a href="/addAnime/">Add New Anime</a>
+            <a href="/logout/">LogOut</a>
+        {% endif %}
     {% endblock menu %}
 </body>
 </html>

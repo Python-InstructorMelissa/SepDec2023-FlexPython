@@ -9,6 +9,11 @@
 </head>
 <body>
     <header>
+        {% if user == False %}
+            <button><a href="/addUser/">Login</a></button>
+        {% else %}
+            <h1>Welcome {{user.firstName}}!</h1>
+        {% endif %}
         <nav>
             {% block menu %} {% include 'menu.html' %} {% endblock menu %}
         </nav>

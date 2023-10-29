@@ -18,18 +18,41 @@ table, tr, td, th {
 a {
     text-decoration: none;
 }
-@purple: #d88ed8;
+@headbg: #d88ed8;
+@font: #000000;
+@linkborder: #951395;
+@linkbg: #acd5d8;
+@colour7: #525a69;
+@colour8: #898dda;
 
 body {
     .flexcolumn();
 
     header {
         .flexcolumn();
-        background-color: @purple;
+        background-color: @headbg;
         width: 85%;
+        padding: .8em;
 
         nav {
             .flexrow();
+            width: 95%;
+            justify-content: space-evenly;
+
+            a {
+                color: @font;
+                border: groove 10px @linkborder;
+                background-color: @linkbg;
+                padding: 1em 2em;
+                border-radius: 40%;
+                // background-image: linear-gradient(90deg, @colour7, @colour8);
+            }
+            .a:before {
+                background-image: linear-gradient(90deg, @colour7, transparent);
+            }
+            .a:after {
+                background-image: linear-gradient(90deg, transparent, @colour8);
+            }
         }
     }
     main {

@@ -1,19 +1,23 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class User:
-    db = 'anime'
+    db = 'parkAnimals'
     def __init__(self, data):
         self.id = data['id']
         self.firstName = data['firstName']
         self.lastName = data['lastName']
-        self.username = data['username']
+        self.email = data['email']
         self.createdAt = data['createdAt']
         self.updatedAt = data['updatedAt']
+        
+
+    # query
+    # results
+    # return
 
     @classmethod
     def getAll(cls):
         query = 'SELECT * FROM user;'
-        # let results = connect to the database send above query and return with results
         results = connectToMySQL(cls.db).query_db(query)
         users = []
         for row in results:
@@ -22,25 +26,25 @@ class User:
 
     @classmethod
     def getOne(cls, data):
-        # %()s = wild card or basically the information we are passing in
-        query = "SELECT * FROM user WHERE id = %(id)s;"
+        query = 'SELECT * FROM user WHERE id=%(id)s;'
         results = connectToMySQL(cls.db).query_db(query, data)
+        # print('get one user results', results)
         if len(results) < 1:
             return False
         return cls(results[0])
     
     @classmethod
-    def getUsername(cls, data):
-        # %()s = wild card or basically the information we are passing in
-        query = "SELECT * FROM user WHERE username = %(username)s;"
+    def getEmail(cls, data):
+        query = 'SELECT * FROM user WHERE email=%(email)s;'
         results = connectToMySQL(cls.db).query_db(query, data)
+        # print('get one user results', results)
         if len(results) < 1:
             return False
         return cls(results[0])
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO user (firstName, lastName, username) VALUES (%(firstName)s, %(lastName)s, %(username)s);"
+        query = 'INSERT INTO user (firstName, lastName, email) VALUES (%(firstName)s, %(lastName)s, %(email)s);'
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
@@ -49,4 +53,8 @@ class User:
 
     @classmethod
     def delete():
+        pass
+
+    @classmethod
+    def parkWithAnimals():
         pass

@@ -31,14 +31,15 @@
                 <label for="power">Power</label>
                 <input type="text" name="power" id="">
             </section>
-            <section>
+            <!-- <section>
                 <label for="user_id">Added By</label>
                 <select name="user_id" id="">
                     {% for user in users %}
                         <option value="{{user.id}}">{{user.firstName}} {{user.lastName}}</option>
                     {% endfor %}
                 </select>
-            </section>
+            </section> -->
+            <input type="hidden" name="user_id" value="{{user.id}}">
             <button>Create New Anime</button>
         </form>
     </main>

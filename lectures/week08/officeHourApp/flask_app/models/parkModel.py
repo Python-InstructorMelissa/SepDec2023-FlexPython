@@ -8,6 +8,7 @@ class Park:
         self.location = data['location']
         self.createdAt = data['createdAt']
         self.updatedAt = data['updatedAt']
+        self.user_id = data['user_id']
         self.animals = []
 
     # query
@@ -32,8 +33,9 @@ class Park:
         return cls(results[0])
 
     @classmethod
-    def save():
-        pass
+    def save(cls, data):
+        query = 'INSERT INTO park (name, location, user_id) VALUES (%(name)s, %(location)s, %(user_id)s);'
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def update():

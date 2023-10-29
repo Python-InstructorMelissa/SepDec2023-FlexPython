@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block header %}
+    <header>
+        <h1>{{root.title}}</h1>
+        {% if user != False %}
+            <h2>{{user.firstName}}</h2>
+        {% endif %}
+        {% block nav %} {% include 'blockFiles/nav.html' %} {% endblock nav %}
+    </header>
+    {% endblock header %}
+</body>
+</html>

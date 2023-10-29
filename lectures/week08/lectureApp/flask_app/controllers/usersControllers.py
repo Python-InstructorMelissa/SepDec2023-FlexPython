@@ -5,14 +5,20 @@ from flask_app.models.userModel import User
 
 @app.route('/')
 def index():
-    # if 'user_id' not in session:
-    #     theUser = False
     theUsers = User.getAll()
-    # data = {
-    #     'id': session['user_id']
-    # }
-    # theUser = User.getOne(data)
-    return render_template('index.html', users=theUsers)
+    if 'user_id' not in session:
+        theUser = False
+    else:
+        data = {
+        'id': session['user_id']
+        }
+        theUser = User.getOne(data)
+    return render_template('index.html', users=theUsers, user=theUser)
+
+@app.route('/logout/')
+def logout():
+    session.clear()
+    return redirect('/')
 
 @app.route('/user/<user_id>/view/')
 def viewUser(user_id):
@@ -33,6 +39,16 @@ def createUser():
         'lastName': request.form['lastName'],
         'username': request.form['username']
     }
-    User.save(data)
-    # session['user_id'] = id
+    newUser = User.save(data)
+    print('the new user', newUser)
+    session['user_id'] = newUser
+    return redirect('/')
+
+@app.route('/login/', methods=['POST'])
+def login():
+    data = {
+        'username': request.form['username']
+    }
+    loggedUser = User.getUsername(data)
+    session['user_id'] = loggedUser.id
     return redirect('/')

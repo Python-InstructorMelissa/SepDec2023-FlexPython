@@ -34,12 +34,28 @@ body header {
   align-items: center;
   background-color: #d88ed8;
   width: 85%;
+  padding: 0.8em;
 }
 body header nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 95%;
+  justify-content: space-evenly;
+}
+body header nav a {
+  color: #000000;
+  border: groove 10px #951395;
+  background-color: #acd5d8;
+  padding: 1em 2em;
+  border-radius: 40%;
+}
+body header nav .a:before {
+  background-image: linear-gradient(90deg, #525a69, transparent);
+}
+body header nav .a:after {
+  background-image: linear-gradient(90deg, transparent, #898dda);
 }
 body main {
   display: flex;

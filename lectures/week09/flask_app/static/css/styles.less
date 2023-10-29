@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=VT323&display=swap');
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: @red;
+    font-size: 1.5em;
+}
+h5 {
+    font-size: 1.5em;
+    color: @white;
+    padding: 1em;
+    background-color: @bgShade;
+    text-align: center;
+    max-width: 300px;
+}
+li {
+    font-size: 1.4em;
+}
+
+h1 {
+    font-size: 3em;
+}
+h2 {
+    font-size: 2em;
+}
+table, th, td {
+    border: 1px double @bgShade;
+    padding: 1em;
+}
+input, textarea {
+    background-color: @bgShade;
+    color: @white;
+    font-size: .8em;
+}
+
+@red: #ff0000;
+@pink: #f110b9;
+@blue: #0004ff;
+@purple: #f508f5;
+@white: #fff;
+@black: #000;
+@green: #0df50d;
+@yellow: #fbff00;
+@bgShade: #fbff0070;
+
+
+
+body {
+    .flexcolumn();
+    background-color: @black;
+    color: @pink;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-family: 'VT323', monospace;
+
+    header {
+        .flexcolumn();
+        width: 95%;
+
+        h1 {
+            color: @yellow;
+        }
+        
+        nav {
+            .flexrow();
+            width: 95%;
+
+            a {
+                padding: 1em;
+                margin: 1em;
+            }
+        }
+    }
+    main {
+        .flexcolumn();
+        margin-bottom: 1em;
+        width: 75%;
+
+        h1 {
+            color: @green;
+        }
+
+        .row {
+            .flexrow();
+            flex-wrap: wrap;
+            width: 75%;
+            align-items: flex-start;
+
+            .column {
+                .flexcolumn();
+                margin: 1em;
+            }
+        }
+        .collapsible {
+            color: @white;
+            cursor: pointer;
+            padding: 18px;
+            width: 50%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 1.4em;
+            background-color: @bgShade;
+            margin: 1em;
+            font-family: 'Archivo Narrow', sans-serif;
+            font-family: 'VT323', monospace;
+        }
+        .active, .collapsible:hover {
+            color: @green;
+            font-size: 1.8em;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            width: 95%;
+
+            table {
+                width: 100%;
+            }
+        }
+        form {
+            .flexcolumn();
+            padding: 1em;
+            width: 40%;
+            font-size: 1.4em;
+
+            section {
+                .flexrow();
+                width: 95%;
+                justify-content: space-between;
+                padding: .5em;
+                margin: .5em;
+
+                input, textarea {
+                    background-color: @bgShade;
+                    color: @white;
+                    font-size: .8em;
+                }
+            }
+        }
+    }
+    footer {
+        .flexcolumn();
+        color: @white;
+    }
+}

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block header %}
+    <header>
+        <h1>Session Playground</h1>
+        {% block nav %} {% include 'blockFiles/nav.html' %} {% endblock nav %}
+    </header>
+    {% endblock header %}
+</body>
+</html>
