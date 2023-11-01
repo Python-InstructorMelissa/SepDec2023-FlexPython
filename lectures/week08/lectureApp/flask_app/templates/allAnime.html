@@ -29,14 +29,19 @@
             </tr>
             {% for anime in animes %}
                 <tr>
-                    <td>{{anime.name}}</td>
+                    <td>
+                        <a class="small-link" href="/anime/{{ anime.id }}/view">{{anime.name}}</a>
+                    </td>
                     <td>{{anime.tvShow}}</td>
                     {% for user in users %}
                         {% if user.id == anime.user_id %}
                             <td>{{user.username}}</td>
                         {% endif %}
                     {% endfor %}
-                    <td></td>
+                    <td>
+                        <a class="small-link" href="/anime/{{ anime.id }}/edit">Edit</a>
+                        <a class="small-link" href="/anime/{{ anime.id }}/delete">Delete</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

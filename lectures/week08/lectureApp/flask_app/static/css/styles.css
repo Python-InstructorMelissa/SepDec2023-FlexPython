@@ -3,14 +3,16 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Zz8oY2KRmwvKhhvLFGKpA.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Zz8oY2KRmwvKhhvLFGKpA.ttf)
+    format('truetype');
 }
 @font-face {
   font-family: 'VT323';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2hsY.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2hsY.ttf)
+    format('truetype');
 }
 .flexcolumn {
   display: flex;
@@ -175,4 +177,8 @@ body footer {
   justify-content: center;
   align-items: center;
   color: #fff;
+}
+
+.small-link {
+  font-size: 1em;
 }

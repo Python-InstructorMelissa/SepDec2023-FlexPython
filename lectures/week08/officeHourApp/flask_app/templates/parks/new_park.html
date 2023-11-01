@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+
+{% block content %}
+  <div class="self-stretch">
+    <h1>Create a Park</h1>
+    <form action="/parks/create" method="post">
+      <input type="hidden" name="user_id" value="{{ user.id }}" />
+      <div class="mb">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="mb">
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location" />
+      </div>
+      <div class="align-right">
+        <button class="btn">Create Park</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

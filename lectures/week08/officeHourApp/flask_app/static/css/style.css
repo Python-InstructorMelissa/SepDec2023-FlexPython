@@ -71,3 +71,56 @@ body footer {
   align-items: center;
   width: 85%;
 }
+
+label,
+input[type='text'],
+input[type='number'] {
+  display: block;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 0.2rem;
+}
+
+input[type='text'],
+input[type='number'] {
+  height: 2rem;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.mb {
+  margin-bottom: 0.5rem;
+}
+
+.self-stretch {
+  align-self: stretch;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  background-color: #898dda;
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.gap {
+  gap: 1.5rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.inline {
+  display: inline;
+}

@@ -1,0 +1,39 @@
+{% extends 'template.html' %}
+
+{% block content %}
+  <div class="self-stretch">
+    <h1>Create an Animal</h1>
+    <form action="/animals/create" method="post">
+      <input type="hidden" name="user_id" value="{{ user.id }}" />
+      <div class="mb">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="mb">
+        <label for="species">Species</label>
+        <input type="text" name="species" id="species" />
+      </div>
+      <div class="mb flexrow gap">
+        <div class="flex-1">
+          <label for="appendages">appendages</label>
+          <input type="number" name="appendages" id="appendages" />
+        </div>
+        <div class="flex-1">
+          <label for="willToLive">willToLive</label>
+          <input type="number" name="willToLive" id="willToLive" />
+        </div>
+        <div class="flex-1">
+          <label for="health">health</label>
+          <input type="number" name="health" id="health" />
+        </div>
+        <div class="flex-1">
+          <input type="checkbox" name="isDead" id="isDead" />
+          <label class="inline" for="isDead">Is it dead?</label>
+        </div>
+      </div>
+      <div class="align-right">
+        <button class="btn">Create Animal</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

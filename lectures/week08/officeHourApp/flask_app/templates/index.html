@@ -5,8 +5,8 @@
 <body>
     {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
     <main>
-        {% for d in data %}
-            <h3>{{d.name}} - {{d.location}}</h3>
+        {% for park in parks %}
+            <h3><a href="/parks/{{ park.id }}">{{park.name}} - {{park.location}}</a></h3>
             <table>
                 <tr>
                     <th>Name</th>
@@ -16,7 +16,7 @@
                     <th>Is Dead</th>
                     <th>Health</th>
                 </tr>
-                {% for a in d.animals %}
+                {% for a in park.animals %}
                     <tr>
                         <td>{{a.name}}</td>
                         <td>{{a.species}}</td>
