@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models import animeModel
 
 class User:
     db = 'anime'
@@ -9,6 +10,8 @@ class User:
         self.username = data['username']
         self.createdAt = data['createdAt']
         self.updatedAt = data['updatedAt']
+        self.animes = []
+        # Remember to loop through this list name to display the animes on the view one user
 
     @classmethod
     def getAll(cls):
@@ -50,3 +53,33 @@ class User:
     @classmethod
     def delete():
         pass
+
+    @classmethod
+    def userAnimes(cls, data):
+        # This is how you can do a multi line query but it MUST BE 3 SETS OF DOUBLE QUOTES TO WORK
+        q = """
+            SELECT * FROM user
+            LEFT JOIN anime
+            ON user.id = anime.user_id
+            WHERE user.id = %(id)s;
+            """
+        # left join user to anime
+        # 1 user to many anime
+        #  create an empty list in constructor to store the users anime
+        # return the list with the user attached
+        res = connectToMySQL(cls.db).query_db(q, data)
+        user = cls(res[0])
+        for row in res:
+            animeData = {
+                'id': row['anime.id'],
+                'name': row['name'],
+                'tvShow': row['tvShow'],
+                'alignment': row["alignment"],
+                'power': row['power'],
+                'createdAt': row['anime.createdAt'],
+                'updatedAt': row["anime.updatedAt"],
+                'user_id':row["user_id"],
+            }
+            # self.animes = the list user.animes
+            user.animes.append(animeModel.Anime(animeData))
+        return user

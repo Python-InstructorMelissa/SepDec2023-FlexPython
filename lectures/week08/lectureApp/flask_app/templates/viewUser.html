@@ -22,6 +22,10 @@
         <h1>{{user.firstName}} {{user.lastName}}</h1>
         <h3>Username: {{user.username}}</h3>
         <p>{{user.createdAt}}</p>
+        <h3>My Anime List</h3>
+        {% for anime in userAnimes.animes %}
+            <h2>{{anime.name}}</h2>
+        {% endfor %}
     </main>
     <footer>
 

@@ -26,7 +26,9 @@ def viewUser(user_id):
         'id': user_id
     }
     theUser = User.getOne(data)
-    return render_template('viewUser.html', user=theUser)
+    theUserAnimes = User.userAnimes(data)
+    print('the anime list', theUserAnimes)
+    return render_template('viewUser.html', user=theUser, userAnimes=theUserAnimes)
 
 @app.route('/addUser/')
 def addUser():
