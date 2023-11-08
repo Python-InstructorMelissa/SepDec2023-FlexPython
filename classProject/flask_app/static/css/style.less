@@ -1,13 +1,44 @@
-body {
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+body {
+    .flexcolumn();
 
     header {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        .flexcolumn();
+        width: 85%;
+        margin: 1em 0;
+    }
+    main {
+        .flexcolumn();
+        width: 85%;
+        margin: 1em 0;
+
+        .myRow {
+            .flexrow();
+            width: 95%;
+
+            .card {
+                width: 350px;
+                margin: .2em 1em;
+                padding: .5em;
+            }
+        }
+    }
+    footer {
+        .flexcolumn();
+        width: 85%;
+        margin: 1em 0;
     }
 }

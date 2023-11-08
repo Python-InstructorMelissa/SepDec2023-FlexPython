@@ -33,10 +33,24 @@ class User:
         if len(res) < 1:
             return False
         return cls(res[0])
+    
+    @classmethod
+    def getOneEmail(cls, data):
+        # This allows you to have your sql statement on multiple lines MUST BE 3 SETS OF DOUBLE QUOTES
+        q = """
+        SELECT *
+        FROM user
+        WHERE email = %(email)s;
+        """
+        res = connectToMySQL(cls.db).query_db(q, data)
+        if len(res) < 1:
+            return False
+        return cls(res[0])
 
     @classmethod
-    def save(cls):
-        pass
+    def save(cls, data):
+        query = "INSERT INTO user (firstName, lastName, email) VALUES (%(firstName)s, %(lastName)s, %(email)s);"
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def update(cls):
