@@ -10,12 +10,12 @@
 <body>
     <header>
         {% if user == False %}
-            <button><a href="/addUser/">Login</a></button>
+            <button><a href="/user/add/">Login</a></button>
         {% else %}
             <h1>Welcome {{user.firstName}}!</h1>
         {% endif %}
         <nav>
-            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+            {% block menu %} {% include 'blockFiles/menu.html' %} {% endblock menu %}
         </nav>
     </header>
     <main>

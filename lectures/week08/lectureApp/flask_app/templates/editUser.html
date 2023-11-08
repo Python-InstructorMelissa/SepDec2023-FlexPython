@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h1>Edit {{vUser.firstName}}</h1>
+        <form action="/user/{{vUser.id}}/update/" method="post">
+            <section>
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" value="{{vUser.firstName}}">
+            </section>
+            <section>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" value="{{vUser.lastName}}">
+            </section>
+            <section>
+                <label for="username">Username</label>
+                <input type="text" name="username" value="{{vUser.username}}">
+            </section>
+            <input type="hidden" name="id" value="{{vUser.id}}">
+            <button>Update User</button>
+        </form>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

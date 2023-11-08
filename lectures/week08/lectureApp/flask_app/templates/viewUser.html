@@ -10,18 +10,22 @@
 <body>
     <header>
         {% if user == False %}
-            <button><a href="/addUser/">Login</a></button>
+            <button><a href="/user/add/">Login</a></button>
         {% else %}
             <h1>Welcome {{user.firstName}}!</h1>
         {% endif %}
         <nav>
-            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+            {% block menu %} {% include 'blockFiles/menu.html' %} {% endblock menu %}
         </nav>
     </header>
     <main>
-        <h1>{{user.firstName}} {{user.lastName}}</h1>
-        <h3>Username: {{user.username}}</h3>
-        <p>{{user.createdAt}}</p>
+        <h1>{{vUser.firstName}} {{vUser.lastName}}</h1>
+        <h3>Username: {{vUser.username}}</h3>
+        <p>{{vUser.createdAt}}</p>
+        {% if vUser.id == user.id %}
+            <button><a href="/user/{{vUser.id}}/edit/">Edit</a></button>
+            <button><a href="/user/{{vUser.id}}/delete/">Delete</a></button>
+        {% endif %}
         <h3>My Anime List</h3>
         {% for anime in userAnimes.animes %}
             <h2>{{anime.name}}</h2>

@@ -47,12 +47,14 @@ class User:
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def update():
-        pass
+    def update(cls, data):
+        query = 'UPDATE user SET firstName=%(firstName)s, lastName=%(lastName)s, username=%(username)s WHERE id = %(id)s;'
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def delete():
-        pass
+    def delete(cls, data):
+        query = 'DELETE FROM user WHERE id = %(id)s;'
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def userAnimes(cls, data):
@@ -76,6 +78,7 @@ class User:
                 'tvShow': row['tvShow'],
                 'alignment': row["alignment"],
                 'power': row['power'],
+                'img': row['img'],
                 'createdAt': row['anime.createdAt'],
                 'updatedAt': row["anime.updatedAt"],
                 'user_id':row["user_id"],

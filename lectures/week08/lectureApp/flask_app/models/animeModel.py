@@ -10,6 +10,7 @@ class Anime:
         self.tvShow = data["tvShow"]
         self.alignment = data["alignment"]
         self.power = data["power"]
+        self.img = data['img']
         self.createdAt = data["createdAt"]
         self.updatedAt = data["updatedAt"]
         self.user_id = data["user_id"]
@@ -35,7 +36,7 @@ class Anime:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO anime (name, tvShow, alignment, power, user_id) VALUES (%(name)s, %(tvShow)s, %(alignment)s, %(power)s, %(user_id)s);"
+        query = "INSERT INTO anime (name, tvShow, alignment, power, img, user_id) VALUES (%(name)s, %(tvShow)s, %(alignment)s, %(power)s, %(img)s, %(user_id)s);"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod

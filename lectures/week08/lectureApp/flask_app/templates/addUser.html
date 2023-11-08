@@ -10,12 +10,12 @@
 <body>
     <header>
         <nav>
-            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+            {% block menu %} {% include 'blockFiles/menu.html' %} {% endblock menu %}
         </nav>
     </header>
     <main>
         <h2>Create User</h2>
-        <form action="/createUser/" method="post">
+        <form action="/user/create/" method="post">
             <section>
                 <label for="firstName">First Name</label>
                 <input type="text" name="firstName" id="">
