@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Debugging Flex</title>
+</head>
+<body>
+    {% if word != False %}
+        <MARQUEE DIRECTION=LEFT>{{word}}</MARQUEE>
+    {% endif %}
+    <h1>Data Set #1</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/main">Main</a>
+        <a href="/renderData01/">Data Set #1</a>
+        <a href="/renderData02/">Data Set #2</a>
+    </nav>
+    <ul>
+        {% for season in seasons %}
+            <li>{{season.name}}</li>
+        {% endfor %}
+    </ul>
+    <MARQUEE DIRECTION=Right>Can you find the Errors? There are 6</MARQUEE>
+</body>
+</html>

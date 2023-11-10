@@ -73,16 +73,19 @@ def loginUser():
     data = {
         'email': request.form['email']
     }
-    formUser = request.form['firstName']
     loggedUser = User.getOneEmail(data)
     print('loggedUser', loggedUser.firstName, request.form['firstName'])
     session['user_id'] = loggedUser.id
     return redirect('/')
 
-@app.route('/user/<int:user_id>/view')
+@app.route('/user/<int:user_id>/view/')
 def viewUser(user_id):
+    userData = {
+        'id': user_id
+    }
+    viewUser = User.getOne(userData)
     root = {
-        'title': '"Fake" Login/Registration'
+        'title': f'Viewing {viewUser.firstName}'
     }
     if 'user_id' in session:
         # theUser = session['user_id']
@@ -94,13 +97,18 @@ def viewUser(user_id):
         theUser = {
             'firstName': 'Guest'
         }
-    return render_template('viewUser.html', root=root, user=theUser)
+    
+    return render_template('viewUser.html', root=root, user=theUser, viewUser=viewUser)
 
 
 @app.route('/user/<int:user_id>/edit/')
 def editUser(user_id):
+    userData = {
+        'id': user_id
+    }
+    viewUser = User.getOne(userData)
     root = {
-        'title': '"Fake" Login/Registration'
+        'title': f'Editing {viewUser.firstName}'
     }
     if 'user_id' not in session:
         theUser = {
@@ -112,14 +120,25 @@ def editUser(user_id):
             'id': session['user_id']
         }
         theUser = User.getOne(data)
-        return render_template('editUser.html', root=root, user=theUser)
+    return render_template('editUser.html', root=root, user=theUser, viewUser=viewUser)
 
 
-@app.route('/user/<int:user_id>/update/')
+@app.route('/user/<int:user_id>/update/', methods=['post'])
 def updateUser(user_id):
-    pass
+    data = {
+        'id': request.form['id'],
+        'firstName': request.form['firstName'],
+        'lastName': request.form['lastName'],
+        'email': request.form['email']
+    }
+    User.update(data)
+    return redirect(f'/user/{user_id}/view/')
 
 
 @app.route('/user/<int:user_id>/delete/')
 def deleteUser(user_id):
-    pass
+    data = {
+        'id': user_id
+    }
+    User.delete(data)
+    return redirect('/logout/')

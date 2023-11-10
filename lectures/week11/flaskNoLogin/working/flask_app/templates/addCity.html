@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Debugging Flask</title>
+</head>
+<body>
+    {% if user != False %}
+        <MARQUEE DIRECTION=LEFT>Welcome {{user}}</MARQUEE>
+    {% endif %}
+
+    <nav>
+        <a href="/">Home</a>
+        {% if user != False %}
+            <a href="/cities/all">All Cities</a>
+            <a href="/city/add">Add City</a>
+            <a href="/exit/">Exit</a>            
+        {% endif %}
+    </nav>
+    <form action="/city/create/" method="post">
+        <section>
+            <label for="cityName">City Name</label>
+            <input type="text" name="cityName" id="">
+        </section>
+        <section>
+            <label for="cityState">City State</label>
+            <input type="text" name="cityState" id="">
+        </section>
+        <section>
+            <label for="addedBy">Added By</label>
+            <input type="text" name="addedBy" value="{{user}}">
+        </section>
+        <button>Add City</button>
+    </form>
+    <MARQUEE DIRECTION=Right>Can you find the Errors? There are 8</MARQUEE>
+    <MARQUEE DIRECTION=Left>You Found {{found}}</MARQUEE>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Debugging Flask</title>
+</head>
+<body>
+    {% if user != False %}
+        <MARQUEE DIRECTION=LEFT>Welcome {{user}}</MARQUEE>
+    {% endif %}
+
+    <nav>
+        <a href="/">Home</a>
+        {% if user != False %}
+            <a href="/cities/all">All Cities</a>
+            <a href="/city/add">Add City</a>
+            <a href="/exit/">Exit</a>            
+        {% endif %}
+    </nav>
+    <h2>All the Cities Added</h2>
+    <ul>
+        {% for city in cities %}
+            <li><a href="/city/{{city.id}}/view/">{{city.cityName}}</a></li>
+        {% endfor %}
+    </ul>
+    <MARQUEE DIRECTION=Right>Can you find the Errors? There are 8</MARQUEE>
+</body>
+</html>

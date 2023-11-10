@@ -10,6 +10,8 @@ class User:
         self.email = data['email']
         self.createdAt = data['createdAt']
         self.updatedAt = data['updatedAt']
+        self.animals = []
+        self.parks = []
 
 
     @classmethod
@@ -53,9 +55,14 @@ class User:
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def update(cls):
-        pass
+    def update(cls, data):
+        query = "UPDATE user SET firstName=%(firstName)s, lastName=%(lastName)s, email=%(email)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def delete(cls):
-        pass
+    def delete(cls, data):
+        query = 'DELETE FROM user WHERE id = %(id)s;'
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    def fullName(self):
+        return f'{self.firstName} {self.lastName}'

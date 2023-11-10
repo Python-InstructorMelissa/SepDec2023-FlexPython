@@ -9,7 +9,7 @@
             {% for aUser in users %}
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{aUser.firstName}} {{aUser.lastName}}</h5>
+                        <h5 class="card-title">{{aUser.fullName()}}</h5>
                         <p>Email: {{aUser.email}}</p> 
                         <a href="/user/{{aUser.id}}/view/" class="btn btn-info">View User</a>
                     </div>
