@@ -4,18 +4,6 @@
 <body>
     {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
     <main>
-        <h1>{{user.firstName}}, You are logged in</h1>
-        <div class="myRow">
-            {% for aUser in users %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{aUser.fullName()}}</h5>
-                        <p>Email: {{aUser.email}}</p> 
-                        <a href="/user/{{aUser.id}}/view/" class="btn btn-info">View User</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
         <div class="myRow">
             {% for park in parks %}
                 <div class="card">
@@ -28,6 +16,9 @@
                             {% endif %}
                         {% endfor %}
                         <a href="/parks/{{park.id}}/view/" class="btn btn-info disabled">View Park</a>
+                        <div>
+                            <h6>where da animals go</h6>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

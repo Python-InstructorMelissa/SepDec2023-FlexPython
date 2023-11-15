@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, session, request
 from flask_app.models.userModel import User
+from flask_app.models.parkModel import Park
 
 # root = {
 #     'title': 'title'
@@ -41,7 +42,8 @@ def index():
             'firstName': 'Guest'
         }
     theUsers = User.getAll()
-    return render_template('index.html', root=root, user=theUser, users=theUsers)
+    theParks = Park.getAll()
+    return render_template('index.html', root=root, user=theUser, users=theUsers, parks=theParks)
 
 @app.route('/fakeLogReg/')
 def fakeLogReg():
