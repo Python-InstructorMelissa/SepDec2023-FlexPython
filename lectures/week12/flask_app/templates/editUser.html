@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <div class="card">
+            <h2>Update your information {{viewUser.fullName()}}</h2>
+            <form action="/user/{{viewUser.id}}/update/" method="post">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstName" value="{{viewUser.firstName}}">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" value="{{viewUser.lastName}}">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email" value="{{viewUser.email}}">
+                    <input type="hidden" name="id" id="" value="{{viewUser.id}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

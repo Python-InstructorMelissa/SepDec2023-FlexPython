@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h1>{{viewUser.fullName()}}</h1>
+        <h3>{{viewUser.email}}</h3>
+        {% if viewUser.id == user.id %}
+        <button class="btn btn-outline-success me-2" type="button"><a href="/user/{{viewUser.id}}/edit/">Edit User</a></button>
+        <button class="btn btn-outline-danger me-2" type="button"><a href="/user/{{viewUser.id}}/delete/">Delete User</a></button>
+        <button class="btn btn-outline-info me-2" type="button"><a href="/">Back to All Users</a></button>
+        {% else %}
+        <button class="btn btn-outline-info me-2" type="button"><a href="/">Back to All Users</a></button>
+        {% endif %}
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>
