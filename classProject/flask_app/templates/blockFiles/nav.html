@@ -5,14 +5,11 @@
         <nav class="navbar bg-body-tertiary">
             <form class="container-fluid justify-content-start">
                 <button class="btn btn-outline-info me-2" type="button"><a href="/">Home</a></button>
-                <button class="btn btn-outline-info me-2" type="button"><a href="/animals/">Animals</a></button>
-                <button class="btn btn-outline-info me-2" type="button"><a href="/animals/add/animal/">Create Animal</a></button>
-                <button class="btn btn-outline-info me-2" type="button"><a href="/parks/">Parks</a></button>
-                <button class="btn btn-outline-info me-2" type="button"><a href="/parks/add/park/">Create Park</a></button>
-                {% if user.firstName == 'Guest' %}
-                    <button class="btn btn-outline-info me-2" type="button"><a href="/fakeLogReg/">Login / Register</a></button>
-                {% else %}
+                {% if user %}
+                    <button class="btn btn-outline-info me-2" type="button"><a href="/new/">New</a></button>
                     <button class="btn btn-outline-info me-2" type="button"><a href="/logout/">Logout</a></button>
+                {% else %}
+                    <button class="btn btn-outline-info me-2" type="button"><a href="/">Register / Login</a></button>
                 {% endif %}
             </form>
 

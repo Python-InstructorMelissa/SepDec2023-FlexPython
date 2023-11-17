@@ -1,7 +1,9 @@
 from flask_app import app
-from flask import render_template, redirect, session, request
+from flask import render_template, redirect, session, request, flash
+from flask_bcrypt import Bcrypt
 from flask_app.models.userModel import User
-from flask_app.models.parkModel import Park
+
+bcrypt = Bcrypt(app)
 
 # root = {
 #     'title': 'title'
@@ -11,136 +13,87 @@ from flask_app.models.parkModel import Park
 # else:
 #     theUser = False
 
-@app.route('/logout/')
-def reset():
-    session.clear()
-    root = {
-        'title': 'Class Project'
-    }
-    if 'user_id' in session:
-        theUser = session['user_id']
-        return redirect('/')
-    else:
-        theUser = {
-            'firstName': 'Guest'
-        }
-    return render_template('reset.html',root=root, user=theUser)
-
 @app.route('/')
 def index():
     root = {
-        'title': 'Class Project'
+        'title': 'Login & Registration'
     }
     if 'user_id' in session:
-        # theUser = session['user_id']
-        data = {
-            'id': session['user_id']
-        }
-        theUser = User.getOne(data)
+        flash("Your still logged in man")
+        return redirect('/dashboard/')
     else:
-        theUser = {
-            'firstName': 'Guest'
-        }
-    theUsers = User.getAll()
-    theParks = Park.getAll()
-    return render_template('index.html', root=root, user=theUser, users=theUsers, parks=theParks)
+        theUser = False
+    return render_template('index.html', root=root, user=theUser)
 
-@app.route('/fakeLogReg/')
-def fakeLogReg():
-    root = {
-        'title': '"Fake" Login/Registration'
-    }
-    if 'user_id' in session:
-        theUser = session['user_id']
-        return redirect('/')
-    else:
-        theUser = {
-            'firstName': 'Guest'
-        }
-    return render_template('fakeLogReg.html', root=root, user=theUser)
-
-@app.route('/user/create/', methods=['POST'])
-def createUser():
-    data = {
-        'firstName': request.form['firstName'],
-        'lastName': request.form['lastName'],
-        'email': request.form['email']
-    }
-    newUser = User.save(data)
-    session['user_id'] = newUser
+@app.route('/logout/')
+def logout():
+    session.clear()
+    flash("See Ya Sucker!")
     return redirect('/')
 
-@app.route('/user/login/', methods=['POST'])
-def loginUser():
-    data = {
-        'email': request.form['email']
-    }
-    loggedUser = User.getOneEmail(data)
-    print('loggedUser', loggedUser.firstName, request.form['firstName'])
-    session['user_id'] = loggedUser.id
-    return redirect('/')
-
-@app.route('/user/<int:user_id>/view/')
-def viewUser(user_id):
-    userData = {
-        'id': user_id
-    }
-    viewUser = User.getOne(userData)
+@app.route('/dashboard/')
+def dashboard():
     root = {
-        'title': f'Viewing {viewUser.firstName}'
-    }
-    if 'user_id' in session:
-        # theUser = session['user_id']
-        data = {
-            'id': session['user_id']
-        }
-        theUser = User.getOne(data)
-    else:
-        theUser = {
-            'firstName': 'Guest'
-        }
-    
-    return render_template('viewUser.html', root=root, user=theUser, viewUser=viewUser)
-
-
-@app.route('/user/<int:user_id>/edit/')
-def editUser(user_id):
-    userData = {
-        'id': user_id
-    }
-    viewUser = User.getOne(userData)
-    root = {
-        'title': f'Editing {viewUser.firstName}'
+        'title': 'The Dashboard'
     }
     if 'user_id' not in session:
-        theUser = {
-            'firstName': 'Guest'
-        }
         return redirect('/')
     else:
         data = {
             'id': session['user_id']
         }
         theUser = User.getOne(data)
-    return render_template('editUser.html', root=root, user=theUser, viewUser=viewUser)
+        return render_template('dashboard.html', root=root, user=theUser)
 
-
-@app.route('/user/<int:user_id>/update/', methods=['post'])
-def updateUser(user_id):
+@app.route('/user/register/', methods=['post'])
+def register():
+    isValid = User.validate(request.form)
+    if not isValid:
+        return redirect('/')
+    else:
+        newUser = {
+            'firstName': request.form['firstName'],
+            'lastName': request.form['lastName'],
+            'email': request.form['email'],
+            'password': bcrypt.generate_password_hash(request.form['password'])
+        }
+        id = User.save(newUser)
+        if not id:
+            flash("Not sure what but you dun screwed something up")
+            return redirect('/')
+        else:
+            session['user_id'] = id
+            flash("Hey man welcome to the app")
+            return redirect('/dashboard')
+        
+@app.route('/user/login/', methods=['post'])
+def login():
     data = {
-        'id': request.form['id'],
-        'firstName': request.form['firstName'],
-        'lastName': request.form['lastName'],
         'email': request.form['email']
     }
-    User.update(data)
-    return redirect(f'/user/{user_id}/view/')
+    user = User.getEmail(data)
+    if not user:
+        flash("Yo maybe you should register first man!")
+        return redirect('/')
+    if not bcrypt.check_password_hash(user.password, request.form['password']):
+        flash("Dummy head you got the wrong password again")
+        return redirect('/')
+    else:
+        session['user_id'] = user.id
+        flash("Hey you came back you must like it here")
+        return redirect('/dashboard/')
+    
 
-
-@app.route('/user/<int:user_id>/delete/')
-def deleteUser(user_id):
-    data = {
-        'id': user_id
+@app.route('/new/')
+def new():
+    root = {
+        'title': 'The Other Dashboard'
     }
-    User.delete(data)
-    return redirect('/logout/')
+    if 'user_id' not in session:
+        return redirect('/')
+    else:
+        data = {
+            'id': session['user_id']
+        }
+        theUser = User.getOne(data)
+        return render_template('dashboard.html', root=root, user=theUser)

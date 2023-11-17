@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blockFiles/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blockFiles/header.html' %} {% endblock header %}
+    <main>
+        <h1>{{user.firstName}}, You are logged in</h1>
+        <div class="myRow">
+            {% for aUser in users %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{aUser.fullName()}}</h5>
+                        <p>Email: {{aUser.email}}</p> 
+                        <a href="/user/{{aUser.id}}/view/" class="btn btn-info">View User</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="myRow">
+            {% for park in parks %}
+                <div class="card">
+                    <div class="card-body">
+                        <h3>{{park.name}}</h3>
+                        <p>{{park.location}}</p>
+                        {% for u in users %}
+                            {% if u.id == park.user_id %}
+                                <p>Created By: {{u.fullName()}}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <a href="/parks/{{park.id}}/view/" class="btn btn-info disabled">View Park</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
+</body>
+</html>

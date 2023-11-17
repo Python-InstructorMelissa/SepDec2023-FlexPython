@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block flash %}
+        <div class="messages">
+            {% with messages = get_flashed_messages() %}
+                {%if messages %}
+                    {% for m in messages %}
+                        <h5>{{m}}</h5>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>  
+    {% endblock flash %}
+</body>
+</html>
