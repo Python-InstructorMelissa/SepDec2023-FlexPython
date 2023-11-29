@@ -1,0 +1,48 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+a {
+    text-decoration: wavy;
+}
+
+@bg: #b8b5b5;
+@font: #333363;
+@red: #763e3e;
+
+
+body {
+    .flexcolumn();
+    background-color: @bg;
+    color: @font;
+
+    header {
+        .flexcolumn();
+
+    }
+    .messages {
+        .flexcolumn();
+
+        h5 {
+            color: @red;
+        }
+    }
+    main {
+        .flexcolumn();
+
+        .row {
+            .flexrow();
+        }
+    }
+    footer {
+        .flexcolumn();
+    }
+}

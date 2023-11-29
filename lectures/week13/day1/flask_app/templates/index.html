@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to your dashboard {{user.full_name()}}</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/logout/">Logout</a>
+            <a href="/comment/add">Add Comment</a>
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <!-- sender_comments.sender_comments =  1st sender_comments = var from controller 2nd sender_comments = name of list in model-->
+        <h2>Comments Sent</h2>
+        {% for sent in sender_comments.sender_comments %}
+            <p>{{sent.comment}}</p>
+            <p>
+                {% for u in users %}
+                {% if u.id == sent.receiver_id %}
+                    Sent to: {{u.full_name()}}
+                {% endif %}
+            {% endfor %}
+            </p>
+        {% endfor %}
+        <h2>Comments Received</h2>
+        {% for receive in receiver_comments.receiver_comments %}
+            <p>{{receive.comment}}</p>
+            <p>
+                {% for u in users %}
+                {% if u.id == receive.sender_id %}
+                    Sent from: {{u.full_name()}}
+                {% endif %}
+            {% endfor %}
+            </p>
+        {% endfor %}
+    </main>
+    <footer></footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
