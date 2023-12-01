@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}} Send a comment</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/logout/">Logout</a>
+            <a href="/comment/add">Add Comment</a>
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <form action="/reply/create/{{comment.id}}/" method="post">
+            <section>
+                <label for="reply">Reply</label>
+                <textarea name="reply" id="" cols="30" rows="10"></textarea>
+            </section>
+            <input type="hidden" name="replyer_id" value="{{user.id}}">
+            <input type="hidden" name="comment_id" value="{{comment.id}}">
+            <button>Send Comment</button>
+        </form>
+    </main>
+    <footer></footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
