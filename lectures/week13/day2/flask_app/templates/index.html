@@ -31,6 +31,7 @@
             <p>{{sent.comment}}</p>
             <p>
                 {% for u in users %}
+                <!-- print who comment was sent too -->
                 {% if u.id == sent.receiver_id %}
                     Sent to: {{u.full_name()}}
                 {% endif %}
@@ -42,6 +43,7 @@
             <p>{{receive.comment}}</p>
             <p>
                 {% for u in users %}
+                <!-- print who sent the comment -->
                 {% if u.id == receive.sender_id %}
                     Sent from: {{u.full_name()}}
                 {% endif %}

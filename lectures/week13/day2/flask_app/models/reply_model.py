@@ -29,7 +29,7 @@ class Reply:
 
     @classmethod
     def save(cls, data):
-        query = 'INSERT INTO reply (reply, replyer_id, comment_id) VALUES(%(reply)s, %(sender_id)s, %(receiver_id)s);'
+        query = 'INSERT INTO reply (reply, replyer_id, comment_id) VALUES(%(reply)s, %(replyer_id)s, %(comment_id)s);'
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod

@@ -52,8 +52,9 @@ def login():
     }
     user = User.get_email(data)
     if not user:
+        print('am i triggered')
         flash("Hey man that email is not in the database register please")
-        redirect('/')
+        return redirect('/')
     if not bcrypt.check_password_hash(user.password, request.form['password']):
         flash("Dude wrong password")
         return redirect('/')

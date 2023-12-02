@@ -51,10 +51,12 @@ def add_reply(commentId):
 
 @app.route('/reply/create/<int:commentId>/', methods=['post'])
 def create_reply(commentId):
+    print(request.form)
     data = {
         'reply': request.form['reply'],
         'replyer_id': request.form['replyer_id'],
-        'comment_id': request.form['comment_id']
+        # 'comment_id': request.form['comment_id']
+        'comment_id': commentId
     }
     Reply.save(data)
     flash("Reply sent")

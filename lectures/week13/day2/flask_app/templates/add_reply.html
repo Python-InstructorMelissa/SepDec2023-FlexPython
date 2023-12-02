@@ -25,6 +25,17 @@
         {% endwith %}
     </div>
     <main>
+        <h2>Replying to:</h2>
+        <p>{{comment.comment}}</p>
+        <h3>Sent by:</h3>
+        <p>
+            {% for u in users %}
+                {% if u.id == comment.sender_id %}
+                    {{u.full_name()}}
+                {% endif %}
+            {% endfor %}
+        </p>
+        {{user.id}}
         <form action="/reply/create/{{comment.id}}/" method="post">
             <section>
                 <label for="reply">Reply</label>
