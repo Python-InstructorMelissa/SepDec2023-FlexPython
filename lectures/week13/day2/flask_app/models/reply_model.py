@@ -26,6 +26,15 @@ class Reply:
         if len(results) < 1:
             return False
         return cls(results[0])
+    
+    @classmethod
+    def getCommentReplies(cls, data):
+        query = 'SELECT * FROM reply WHERE comment_id = %(comment_id)s;'
+        results = connectToMySQL(cls.db).query_db(query, data)
+        replys = []
+        for row in results:
+            replys.append(cls(row))
+        return replys
 
     @classmethod
     def save(cls, data):

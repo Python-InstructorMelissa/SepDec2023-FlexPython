@@ -49,6 +49,12 @@
                 {% endif %}
             {% endfor %}
             </p>
+            
+            
+            <!-- Display actual replies -->
+            {% for reply in Reply.getCommentReplies({'comment_id': receive.id}) %}
+                <p>Replies: {{ sent.replies.count() }}</p>
+            {% endfor %}
             <button><a href="/reply/add/{{receive.id}}/">Reply to Sender</a></button>
         {% endfor %}
     </main>

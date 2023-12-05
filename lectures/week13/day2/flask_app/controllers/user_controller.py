@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_bcrypt import Bcrypt
 from flask_app.models.user_model import User
+from flask_app.models.reply_model import Reply
 
 bcrypt = Bcrypt(app)
 
@@ -18,7 +19,8 @@ def index():
         the_sender_comments = User.sender_comments(data)
         the_receiver_comments = User.receiver_comments(data)
         the_users = User.get_all()
-    return render_template('index.html', user=the_user, sender_comments=the_sender_comments, receiver_comments=the_receiver_comments, users=the_users)
+        theReplies = Reply.get_all()
+    return render_template('index.html', user=the_user, sender_comments=the_sender_comments, receiver_comments=the_receiver_comments, users=the_users, replies=theReplies)
 
 @app.route('/')
 def log_reg():
