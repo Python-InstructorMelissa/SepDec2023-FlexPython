@@ -22,6 +22,7 @@ body header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 85%;
 }
 body header nav {
   display: flex;
@@ -46,10 +47,30 @@ body main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 85%;
+}
+body main .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main img {
+  max-width: 300px;
 }
 body footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 85%;
 }

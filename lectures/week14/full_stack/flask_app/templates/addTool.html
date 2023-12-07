@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>The Market Place</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}}</h1>
+        <nav>
+            <a href="/tool/add/">Add a Tool</a>
+            <a href="/inventory/add/">Purchase a Tool</a>
+            <a href="/inventory/sell/">Sell A tool</a>
+            <a href="/profile/">Profile</a>
+            <a href="/logout/"></a>
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Add a Tool to the Database</h2>
+        <form action="/tool/create/" method="post">
+            <section>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="">
+            </section>
+            <section>
+                <label for="descp">Description</label>
+                <textarea name="descp" id="" cols="30" rows="10"></textarea>
+            </section>
+            <section>
+                <label for="defensive">Is it a Defensive Tool</label>
+                <select name="defensive">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </section>
+            <section>
+                <label for="strength">Strength</label>
+                <input type="number" name="strength" id="">
+            </section>
+            <section>
+                <label for="price">Price</label>
+                <input type="number" name="price" id="">
+            </section>
+            <section>
+                <label for="img">Img Url</label>
+                <input type="text" name="img" id="">
+            </section>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <button>Add Tool</button>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>

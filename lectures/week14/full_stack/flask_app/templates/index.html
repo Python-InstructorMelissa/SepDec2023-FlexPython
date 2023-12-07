@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>The Market Place</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}}</h1>
+        <nav>
+            <a href="/tool/add/">Add a Tool</a>
+            <a href="/inventory/add/">Purchase a Tool</a>
+            <a href="/inventory/sell/">Sell A tool</a>
+            <a href="/profile/">Profile</a>
+            <a href="/logout/"></a>
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Tools Data Base</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Img</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            {% for tool in tools %}
+                <tr>
+                    <td>{{tool.name}}</td>
+                    <td><img src="{{tool.img}}" alt="{{tool.name}}"></td>
+                    <td>${{tool.price}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer></footer>
+</body>
+</html>
