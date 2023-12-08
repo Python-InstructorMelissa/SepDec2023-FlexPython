@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blocks/header.html' %} {% endblock header %}
+    <main>
+        {% for image in allImages %}
+            {% for u in users %}
+                {% if image.user_id == u.id %}
+                    <img src="{{image.url}}" alt="{{image.titile}}">
+                    <h3>Title: {{image.titile}}</h3>
+                    <h3>Added By: {{u.fullName()}}</h3>
+                    <button><a href="/image/{{image.id}}/view/">View Image</a></button>
+                    {% if u.id == user.id %}
+                        <button><a href="/image/{{image.id}}/edit/">Edit Image</a></button>
+                        <button><a href="/image/{{image.id}}/delete/">Delete Image</a></button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </main>
+    {% block footer %} {% include 'blocks/footer.html' %} {% endblock footer %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blocks/header.html' %} {% endblock header %}
+    <main>
+        <form action="/image/create" method="post">
+            <section>
+                <label for="titile">Title</label>
+                <input type="text" name="titile">
+            </section>
+            <section>
+                <label for="url">Image URL</label>
+                <input type="text" name="url">
+            </section>
+            <section>
+                <label for="description">Description</label>
+                <textarea name="description" id="" cols="30" rows="10"></textarea>
+            </section>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <button>Add Image</button>
+        </form>
+    </main>
+    {% block footer %} {% include 'blocks/footer.html' %} {% endblock footer %}
+</body>
+</html>
