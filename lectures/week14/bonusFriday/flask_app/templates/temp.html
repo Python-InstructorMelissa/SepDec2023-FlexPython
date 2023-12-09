@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+    <title>The Market Place</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}}</h1>
+        {% block nav %} {% include 'blocks/nav.html' %} {% endblock nav %}
+    </header>
+    {% block flash %} {% include 'blocks/flash.html' %} {% endblock flash %}
+    <main>
+        
+    </main>
+    <footer></footer>
+</body>
+</html>

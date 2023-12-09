@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+    <title>The Market Place</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}}</h1>
+        {% block nav %} {% include 'blocks/nav.html' %} {% endblock nav %}
+    </header>
+    {% block flash %} {% include 'blocks/flash.html' %} {% endblock flash %}
+    <main>
+        <h2>Add a Tool to the Database</h2>
+        <form action="/tool/create/" method="post">
+            <section>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="">
+            </section>
+            <section>
+                <label for="descp">Description</label>
+                <textarea name="descp" id="" cols="30" rows="10"></textarea>
+            </section>
+            <section>
+                <label for="defensive">Is it a Defensive Tool</label>
+                <select name="defensive">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </section>
+            <section>
+                <label for="strength">Strength</label>
+                <input type="number" name="strength" id="">
+            </section>
+            <section>
+                <label for="price">Price</label>
+                <input type="number" name="price" id="">
+            </section>
+            <section>
+            <label for="count">Quantity</label>
+                <input type="number" name="count" id="">
+            </section>
+            <section>
+                <label for="img">Img Url</label>
+                <input type="text" name="img" id="">
+            </section>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <button>Add Tool</button>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>

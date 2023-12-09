@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+    <title>The Market Place</title>
+</head>
+<body>
+    <header>
+        <h1>{{user.full_name()}}</h1>
+        {% block nav %} {% include 'blocks/nav.html' %} {% endblock nav %}
+    </header>
+    {% block flash %} {% include 'blocks/flash.html' %} {% endblock flash %}
+    <main>
+        <h2>Tools For Sale</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Img</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            {% for tool in tools %}
+                <tr>
+                    <td>{{tool.name}}</td>
+                    <td><img src="{{tool.img}}" alt="{{tool.name}}"></td>
+                    <td>{{tool.count}}</td>
+                    <td>${{tool.price}}</td>
+                    <td>
+                        {% if user.id == tool.user_id %}
+                            <button><a href="/tool/{{tool.id}}/view/">View</a></button> | Edit | Delete
+                        {% else %}
+                        <button><a href="/tool/{{tool.id}}/view/">View</a></button> | Purchase
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer></footer>
+</body>
+</html>
