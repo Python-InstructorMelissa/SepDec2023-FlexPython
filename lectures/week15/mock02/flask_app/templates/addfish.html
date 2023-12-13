@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blocks/header.html' %} {% endblock header %}
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Add New Fish</h2>
+        <form action="/fish/create/", method="post">
+            <section>
+                <label for="fishtype">Fish Type</label>
+                <input type="text" name="fishtype">
+            </section>
+            <section>
+                <label for="theNum">Number of Fish</label>
+                <input type="number" name="theNum">
+            </section>
+            <section>
+                <label for="url">Image URL</label>
+                <input type="text" name="url">
+            </section>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <button>Add Fish</button>
+        </form>
+    </main>
+    {% block footer %} {% include 'blocks/footer.html' %} {% endblock footer %}
+</body>
+</html>

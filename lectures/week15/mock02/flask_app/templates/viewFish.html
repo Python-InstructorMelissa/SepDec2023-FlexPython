@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blocks/header.html' %} {% endblock header %}
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h1>{{fish.fishtype}}</h1>
+
+        <div class="row">
+            <div class="column">
+                <h3>Count: {{fish.theNum}}</h3>
+                <!-- Likes -->
+                    <form action="/like/", method="post">
+                        <input type="hidden" name="user_id" value="{{user.id}}">
+                        <input type="hidden" name="fish_id" value="{{fish.id}}">
+                        <button>Like fish</button>
+                    </form>
+            </div>
+            <img src="{{fish.url}}" alt="{{fish.fishtype}}">
+        </div>
+    </main>
+    {% block footer %} {% include 'blocks/footer.html' %} {% endblock footer %}
+</body>
+</html>

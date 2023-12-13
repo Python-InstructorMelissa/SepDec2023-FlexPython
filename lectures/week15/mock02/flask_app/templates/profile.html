@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'blocks/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'blocks/header.html' %} {% endblock header %}
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h1>{{user.firstName}}'s Fish</h1>
+        <table>
+            <tr>
+                <th>Fish Type</th>
+                <th>Count</th>
+                <th>Likes</th>
+                <th>Actions</th>
+            </tr>
+            {% for fish in userFishes.fishes %}
+                <tr>
+                    <td>{{fish.fishtype}}</td>
+                    <td>{{fish.theNum}}</td>
+                    <td></td>
+                    <td>
+                        <a href="/fish/{{fish.id}}/view/">View</a>
+                        {% if fish.user_id == user.id %}
+                            | <a href="/fish/{{fish.id}}/edit/">Edit</a> | <a href="/fish/{{fish.id}}/delete/">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    {% block footer %} {% include 'blocks/footer.html' %} {% endblock footer %}
+</body>
+</html>
