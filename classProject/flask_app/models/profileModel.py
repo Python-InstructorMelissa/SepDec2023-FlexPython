@@ -3,7 +3,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 
 
 class Profile:
-    db = 'classProjSep23'
+    db = 'classProjSept23'
     def __init__(self, data):
         self.id = data['id']
         self.lat = data['lat']
@@ -29,15 +29,23 @@ class Profile:
         if len(res) < 1:
             return False
         return cls(res[0])
+    
+    @classmethod
+    def get_by_user(cls, data):
+        q = "SELECT * FROM profile WHERE user_id = %(user_id)s; "
+        res = connectToMySQL(cls.db).query_db(q, data)
+        if len(res) < 1:
+            return False
+        return cls(res[0])
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO profile (lat, lon, user_id) VALUES (%(lat)s, %(lon)s, %(user_id)s);"
+        query = "INSERT INTO profile (lat, lon, user_id) VALUES (0, 0, %(user_id)s);"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def update(cls, data):
-        query = "UPDATE profile SET lat=%(lat)s, lon=%(lon)s WHERE id = %(id)s;"
+        query = "UPDATE profile SET lat=%(lat)s, lon=%(lon)s WHERE user_id = %(user_id)s;"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod

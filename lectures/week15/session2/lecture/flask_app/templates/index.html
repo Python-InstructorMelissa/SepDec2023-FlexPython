@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        {% for word in words %}
+            <h2>{{word}}</h2>
+        {% endfor %}
+        <div class="row">
+            {% for tune in tunes %}
+            <div class="column">
+                <h2>{{tune.name}}</h2>
+                <img src="{{tune.img}}" alt="{{tune.name}}">
+            </div>
+            {% endfor %}
+            {% for squish in squishs %}
+                <div class="column">
+                    <h2>{{squish.name}}</h2>
+                    <img src="{{squish.img}}" alt="{{squish.name}}">
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

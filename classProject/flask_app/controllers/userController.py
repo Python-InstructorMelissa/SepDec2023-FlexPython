@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash
 from flask_bcrypt import Bcrypt
 from flask_app.models.userModel import User
+from flask_app.models.profileModel import Profile
 
 bcrypt = Bcrypt(app)
 
@@ -43,7 +44,10 @@ def dashboard():
             'id': session['user_id']
         }
         theUser = User.getOne(data)
-        return render_template('dashboard.html', root=root, user=theUser)
+        if 'zip_code' not in session:
+            zip_code = False
+        zip_code = session['zip_code']    
+        return render_template('dashboard.html', root=root, user=theUser, zip=zip_code)
 
 @app.route('/user/register/', methods=['post'])
 def register():
@@ -62,6 +66,10 @@ def register():
             flash("Not sure what but you dun screwed something up")
             return redirect('/')
         else:
+            profile_id = {
+                'user_id': id
+            }
+            Profile.save(profile_id)
             session['user_id'] = id
             flash("Hey man welcome to the app")
             return redirect('/dashboard')
@@ -79,6 +87,12 @@ def login():
         flash("Dummy head you got the wrong password again")
         return redirect('/')
     else:
+        userData = {
+            'user_id': user.id
+        }
+        profile = Profile.get_by_user(userData)
+        if not profile:
+            Profile.save(userData)
         session['user_id'] = user.id
         flash("Hey you came back you must like it here")
         return redirect('/dashboard/')

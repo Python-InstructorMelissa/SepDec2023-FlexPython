@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button><a href="/createFood/">Create Food</a></button>
+    <button><a href="/admin/">Admin</a></button>
+    {% for food in foods %}
+        <h2>{{food.name}}</h2>
+    {% endfor %}
+    {% for meal in meals %}
+        <h3>{{meal}}</h3>
+    {% endfor %}
+</body>
+</html>

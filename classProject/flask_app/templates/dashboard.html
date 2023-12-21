@@ -6,6 +6,12 @@
     {% block flash %} {% include 'blockFiles/flash.html' %} {% endblock flash %}
     <main>
         <h1>The Dash</h1>
+        <form action="/user/zipCode/" method="post">
+            <label for="zip_code">Your Zip Code Please</label>
+            <input type="text" name="zip_code" id="">
+            <button>Check Conditions</button>
+        </form>
+        <h2>Your current location: {{zip}}</h2>
     </main>
     {% block footer %} {% include 'blockFiles/footer.html' %} {% endblock footer %}
 </body>
